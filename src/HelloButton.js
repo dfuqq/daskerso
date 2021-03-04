@@ -26,5 +26,3 @@ const styles = StyleSheet.create({
         color: "#fff",
     },
 });
-// Старый с почином
-// Это мои новые правки
