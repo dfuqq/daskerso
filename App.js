@@ -20,10 +20,6 @@ const Icon = createIconSetFromIcoMoon(
 import png from "./assets/dust.jpg";
 
 export default function App() {
-    const [flag, setFlag] = useState(true);
-
-    const check = () => setFlag(!flag);
-
     const [fontsLoaded] = useFonts({
         IcoMoon: require("./assets/fonts/icomoon.ttf"),
     });
