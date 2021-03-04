@@ -11,8 +11,6 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
 
-import HelloButton from "./src/HelloButton";
-
 const Icon = createIconSetFromIcoMoon(
     require("./src/selection.json"),
     "IcoMoon",
@@ -22,7 +20,7 @@ const Icon = createIconSetFromIcoMoon(
 import png from "./assets/dust.jpg";
 
 export default function App() {
-    const [flag, setFlag] = useState(false);
+    const [flag, setFlag] = useState(true);
 
     const check = () => setFlag(!flag);
 
@@ -37,7 +35,14 @@ export default function App() {
         <View style={styles.container}>
             <StatusBar hidden />
             <ImageBackground source={png} style={styles.image}>
-                <View style={styles.overlay}>
+                <View style={styles.overlay} />
+
+                <Text style={styles.text}>
+                    {`Меня зовут \n Даскерсо Алфодида`}
+                </Text>
+                <Text style={styles.date}>Пт, 27 февраля</Text>
+
+                <View style={styles.main}>
                     <TouchableOpacity
                         style={styles.leftTap}
                         onPress={() => console.log("Предыдущий текст")}
@@ -47,18 +52,14 @@ export default function App() {
                         onPress={() => console.log("Следующий текст")}
                     />
                 </View>
-                <Text style={styles.text}>
-                    {`Меня зовут \n Даскерсо Алфодида`}
-                </Text>
-                <Text style={styles.date}>Пт, 27 февраля</Text>
+
                 <Icon
                     name='Menu-Icon'
-                    size={20}
+                    size={21}
                     color='white'
                     style={styles.icon}
-                    onPress={check}
+                    onPress={() => console.log("Открытие меню")}
                 />
-                {flag && <HelloButton title='check' />}
             </ImageBackground>
         </View>
     );
@@ -71,13 +72,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    main: {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        flex: 1,
+        flexDirection: "row",
+    },
     leftTap: {
-        backgroundColor: "rgba(255, 255, 0, 0.3)",
         height: "100%",
         width: "35%",
     },
     rightTap: {
-        backgroundColor: "rgba(255, 0, 255, 0.3)",
         height: "100%",
         width: "65%",
     },
@@ -92,11 +100,16 @@ const styles = StyleSheet.create({
         position: "absolute",
         color: "#fff",
         top: 20,
+        fontSize: 16,
     },
     icon: {
         position: "absolute",
         top: 15,
         left: 15,
+        paddingTop: 0,
+        paddingLeft: 0,
+        paddingBottom: 15,
+        paddingRight: 15,
     },
     image: {
         flex: 1,
@@ -113,7 +126,5 @@ const styles = StyleSheet.create({
         right: 0,
         backgroundColor: "#000",
         opacity: 0.7,
-        flex: 1,
-        flexDirection: "row",
     },
 });
