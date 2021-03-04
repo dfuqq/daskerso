@@ -26,4 +26,5 @@ const styles = StyleSheet.create({
         color: "#fff",
     },
 });
-// ggggstaryystaryyi
+// Старый с почином
+// Это мои новые правки
