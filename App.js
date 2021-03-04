@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    ImageBackground,
+    TouchableOpacity,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
@@ -31,7 +37,16 @@ export default function App() {
         <View style={styles.container}>
             <StatusBar hidden />
             <ImageBackground source={png} style={styles.image}>
-                <View style={styles.overlay} />
+                <View style={styles.overlay}>
+                    <TouchableOpacity
+                        style={styles.leftTap}
+                        onPress={() => console.log("Предыдущий текст")}
+                    />
+                    <TouchableOpacity
+                        style={styles.rightTap}
+                        onPress={() => console.log("Следующий текст")}
+                    />
+                </View>
                 <Text style={styles.text}>
                     {`Меня зовут \n Даскерсо Алфодида`}
                 </Text>
@@ -55,6 +70,16 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+    },
+    leftTap: {
+        backgroundColor: "rgba(255, 255, 0, 0.3)",
+        height: "100%",
+        width: "35%",
+    },
+    rightTap: {
+        backgroundColor: "rgba(255, 0, 255, 0.3)",
+        height: "100%",
+        width: "65%",
     },
     text: {
         fontSize: 26,
@@ -88,5 +113,7 @@ const styles = StyleSheet.create({
         right: 0,
         backgroundColor: "#000",
         opacity: 0.7,
+        flex: 1,
+        flexDirection: "row",
     },
 });
