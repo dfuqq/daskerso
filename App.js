@@ -5,6 +5,8 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
 
+import HelloButton from "./src/HelloButton";
+
 const Icon = createIconSetFromIcoMoon(
     require("./src/selection.json"),
     "IcoMoon",
@@ -41,7 +43,7 @@ export default function App() {
                     style={styles.icon}
                     onPress={check}
                 />
-                {flag && <Text style={styles.text}>Working!</Text>}
+                {flag && <HelloButton title='check' />}
             </ImageBackground>
         </View>
     );
