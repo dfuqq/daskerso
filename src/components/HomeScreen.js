@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     Text,
@@ -10,6 +10,11 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { createIconSetFromIcoMoon } from "@expo/vector-icons";
 
+import { DefaultButton } from "./Buttons";
+import { DangerButton } from './Buttons';
+
+import { Menu } from './Menu'
+
 const Icon = createIconSetFromIcoMoon(
     require("../selection.json"),
     "IcoMoon",
@@ -17,13 +22,34 @@ const Icon = createIconSetFromIcoMoon(
 );
 
 import png from "../dust.jpg";
+import Texts from './Test.json'
 
 export const HomeScreen = () => {
+    const [count, setCount] = useState(1);
+    const [flag, setFlag] = useState(false);
+
     const [fontsLoaded] = useFonts({
         IcoMoon: require("../icomoon.ttf"),
     });
     if (!fontsLoaded) {
         return <AppLoading />;
+    }
+
+    function clickNext() {
+        count === 5 ? null : setCount(count + 1);
+    }
+
+    function clickPrev() {
+        if (count === 1) {
+            null
+        }
+        else {
+            setCount(count - 1)
+        }
+    }
+
+    function openMenu() {
+        setFlag(!flag)
     }
 
     return (
@@ -32,22 +58,22 @@ export const HomeScreen = () => {
                 <View style={styles.overlay} />
 
                 <Text style={styles.text}>
-                    {`Меня зовут \n Даскерсо Алфодида`}
+                    {Texts[count]}
                 </Text>
                 <Text style={styles.date}>Пт, 27 февраля</Text>
 
                 <View style={styles.main}>
                     <TouchableOpacity
                         style={styles.leftTap}
-                        onPress={() => console.log("Предыдущий текст")}
+                        onPress={clickPrev}
                     />
                     <TouchableOpacity
                         style={styles.rightTap}
-                        onPress={() => console.log("Следующий текст")}
+                        onPress={clickNext}
                     />
                 </View>
 
-                <TouchableOpacity style={styles.iconDiv} onPress={() => console.log('Меню')} activeOpacity={0.7}>
+                <TouchableOpacity style={styles.iconDiv} onPress={openMenu} activeOpacity={0.7}>
                     <Icon
                         name='Menu-Icon'
                         size={21}
@@ -56,6 +82,16 @@ export const HomeScreen = () => {
                     />
                 </TouchableOpacity>
 
+                {count === 5 &&
+                    <DefaultButton title='Да' />
+                }
+
+                {count === 5 && 
+                    <DangerButton title='Нет' />
+                }
+                
+                {flag && <Menu openMenu={openMenu} />}
+ 
             </ImageBackground>
         </View>
     );
@@ -102,7 +138,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         color: "#fff",
-        marginBottom: 20,
+        marginBottom: 40,
         paddingHorizontal: 5,
     },
     date: {
