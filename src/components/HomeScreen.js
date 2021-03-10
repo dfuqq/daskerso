@@ -57,7 +57,7 @@ export const HomeScreen = () => {
                 <View style={styles.overlay} />
 
                 <Text style={styles.text}>{Texts[count]}</Text>
-                <Text style={styles.date}>Пт, 27 февраля</Text>
+                {!flag && <Text style={styles.date}>Пт, 27 февраля</Text>}
 
                 <View style={styles.main}>
                     <TouchableOpacity
@@ -75,12 +75,7 @@ export const HomeScreen = () => {
                     onPress={openMenu}
                     activeOpacity={0.7}
                 >
-                    <Icon
-                        name='Menu-Icon'
-                        size={21}
-                        color='white'
-                        style={styles.icon}
-                    />
+                    {!flag && <Icon name='menuIcon' size={21} color='white' />}
                 </TouchableOpacity>
 
                 {count === 5 && <DefaultButton title='Да' />}
