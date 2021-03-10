@@ -57,7 +57,7 @@ export const HomeScreen = () => {
                 <View style={styles.overlay} />
 
                 <Text style={styles.text}>{Texts[count]}</Text>
-                {!flag && <Text style={styles.date}>Пт, 27 февраля</Text>}
+                <Text style={styles.date}>Пт, 27 февраля</Text>
 
                 <View style={styles.main}>
                     <TouchableOpacity
